@@ -7,8 +7,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('new_project_name', type=str, help='The new django project name. 1 Time use only.')
 
-        #parser.add_argument('-p', '--perfix')
-
     def handle(self, *args, **kwargs):
         new_project_name = kwargs['new_project_name']
 
