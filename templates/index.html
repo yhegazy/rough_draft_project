@@ -6,5 +6,10 @@
 
     <p><a href="/admin">Admin Login</a></p>
     <p>username: <b>superuser</b></p>
-    <p>password: <b>drowssap</b></p>
+    <p>password: <b>drowssap</b></p> 
+
+    {% for i in servicemaxcase_list %}
+		<li><a href="{{ i.get_absolute_url }}">{{ i.item1 }}</a> ({{ServiceMaxCase.item2}})</li>
+	{% endfor %}
+
 {% endblock %}

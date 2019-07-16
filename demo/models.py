@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse # Used to generate URLs by reversing the URL pattern
 from PIL import Image
 
-# Create your models here. From bottm up (detail -> general)
+# Create your models here. From bottom up (detail -> general)
 class ServiceMaxCase(models.Model):
     #Drop Down Builds
     WO_TYPE = (
@@ -11,6 +11,7 @@ class ServiceMaxCase(models.Model):
     )
 
     UPGRADED_BY = (
+        ('-', 'Pick One'),
         ('Heath', 'Heath Guy'),
         ('Yahia', 'Yahia Hegazy'),
     )
@@ -19,8 +20,6 @@ class ServiceMaxCase(models.Model):
     WO_Type = models.CharField(max_length=3, choices=WO_TYPE, blank=True, default='-', help_text='Work Order Type')
     UPA = models.BooleanField() 
     Minimum_Server_Requirements = models.BooleanField()
-
-    Minimum_Radimetrics_Requirements = models.CharField(max_length=10, blank=False, default='2.9.1b', help_text='Color Coded Red for current_rad_version<2.7a, Yellow for current_rad_version<2.9b and Green for current_rad_version == minimum_rad_version')
 
     Primary_Email = models.CharField(max_length=100, blank=True, help_text='Primary Email')
     Clinical_Email = models.CharField(max_length=100, blank=True, help_text='Clinical Email')
@@ -66,21 +65,15 @@ class AssetTag(models.Model):
     Asset_Number = models.CharField(max_length=50, blank=False, default="", help_text="ie: 50001201161")
     Current_OS_Version = models.CharField(max_length=10, choices=CURRENT_OS_VERSION, blank=True, default='-', help_text='Current OS Version')
     Current_Radimetrics_Version = models.CharField(max_length=10, blank=False, default='2.9.1b', help_text='Current Radimetrics Version ')
+
+    #Current_Radimetrics_Requirements = models.CharField(max_length=10, blank=False, default='2.9.1b', help_text='Color Coded Red for current_rad_version=<2.4a, Yellow for current_rad_version=<2.9b and Green for current_rad_version == minimum_rad_version')
+
     Type_Of_Server =  models.CharField(max_length=20, choices=TYPE_OF_SERVER, blank=False, default='-', help_text='Type of Server')
 
     Current_Disks = models.CharField(max_length=50, blank=False, default="", help_text="ie: 100/100/200")
-    Current_CPU = models.CharField(max_length=1, blank=False, default="", help_text="ie: 4")
+    Current_CPU = models.CharField(max_length=5, blank=False, default="", help_text="ie: 4")
     Current_RAM = models.CharField(max_length=5, blank=False, default="", help_text="ie: 16")
     
-    """
-    @property
-    def os_check(self):
-        for os in self.CURRENT_OS_VERSION:
-            if os == 'RedHat':
-                self.RedHat_Subscription = models.BooleanField(help_text="Subscribed?")
-             
-                return self.RedHat_Subscription
-    """
     Case_Number_Details = models.ForeignKey(ServiceMaxCase, on_delete=models.SET_NULL, null=True, help_text="Case Number Details")
 
     def __str__(self):
@@ -92,4 +85,6 @@ class HospitalSite(models.Model):
 
     def __str__(self):
         return self.Name
+
+
 
