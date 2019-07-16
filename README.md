@@ -1,4 +1,4 @@
-<h1>Django Boilerplate Template</h1>
+<h1>The Wiki</h1>
 
 بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
 
