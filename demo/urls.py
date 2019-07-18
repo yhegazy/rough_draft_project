@@ -1,15 +1,16 @@
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-from core import views
 from .views import home
+from demo import views
 
 urlpatterns = [
     path('admin/demo/', admin.site.urls),
     path('', home, name='home'),
-   # path('core.ServiceMaxCaseListView/servicemaxcase_list', views.ServiceMaxCaseListView.as_view(), name='servicemaxcase_list')
+  #  path('ServiceMaxCaseListView', views.ServiceMaxCaseListView.as_view(), name='demo/servicemaxcase_list')
+    path('demo/', include('django.contrib.auth.urls'))
+   
 ]
-
 
 if settings.DEBUG:
     import debug_toolbar

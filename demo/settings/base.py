@@ -15,9 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'demo',
-    'core'
-
-    
+    'core'   
 ]
 
 MIDDLEWARE = [
@@ -62,3 +60,6 @@ VENV_PATH = os.path.dirname(BASE_DIR)
 STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(VENV_PATH, 'media')
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
