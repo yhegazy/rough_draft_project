@@ -7,15 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <ol>
-            {% if user.is_authenticated %}
-            <li>User: {{ user.get_username }}</li>
-            <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-        {% else %}
-            <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-        {% endif %}
-        </ul>
-    </ol>
+    {% if user.is_authenticated %}
+        <h3>Welcome to the Admin page</h3>
+        <p>User: {{ user.get_username }}</p>
+        <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+    {% else %}
+        <p><a href="{% url 'login'%}?next={{request.path}}">Login</a></p>
+    {% endif %}
     {% block content %}
     {% endblock %}
     

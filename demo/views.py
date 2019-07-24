@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import ServiceMaxCase
+from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import HospitalSite
 	
 def home(request):
-    return render(request, "index.html", {})
+	return render(request, "index.html", {})
 
 
-class ServiceMaxCaseListView(generic.ListView):
-		model = ServiceMaxCase
-      #  context_object_name = 'my_servicemaxcase_list' # your own name for the list as a template variable
-		queryset = model.objects.filter(Case_Number__icontains='insert random meaningful word here')
-		template_name = 'demo/servicemaxcase_list.html' # Specify your own template name/location
+class HospitalSiteList(generic.ListView):
+	model = HospitalSite
+	context_object_name = 'test' 
+	template_name = 'index.html'
+
+
+	
