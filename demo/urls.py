@@ -12,7 +12,7 @@ urlpatterns = [
 ]
 
 """
-20190723:: I fully do not understand how Django 2.2 path function works. I understand re_path, or Django 1.X  - url(), and so urlpatterns that should seem to work in path and does not, should be rewritten as a re_path.
+20190723:: I fully do not understand how Django 2.2 path() function works. I understand re_path, or Django 1.X  - url(), and so urlpatterns that should seem to work in path and does not, should be rewritten as a re_path.
 """  
     
 urlpatterns += [
