@@ -12,24 +12,35 @@
         <p>Gotta log in to see the admin stuff</p>
     {% endif %}
     
+    <h3>Site Name</h3>
 
-    <form action="" method="post">
-      {% csrf_token %}
-        <table>
-          {{ form.as_table }}
-        </table>
-        <input type="submit" value="Submit" />
-      </form>
-
-    	{% if test %}
-    <ul>
-    {% for x in test %}
-      <li>{{ x.Name }} </li>
-    {% endfor %}
-    </ul>
-
+    {% if test %}
+   
+    <table class="ui celled table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for x in test %}
+          <tr>
+            <td>{{ x.Name }} </td>
+            <td class="top aligned">
+                Asset Number<br>
+                1<br>
+                2<br>
+            <td class="selectable">
+              <a href="#">Edit</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     {% else %}
-    <p>No results found.</p>
+      <p>No results found.</p>
     {% endif %}
 
 {% endblock %}

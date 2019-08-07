@@ -5,54 +5,16 @@ Title: Server Web Form
 **********/
 
 $fonttype: "Times New Roman", "Georgia", sans-serif;
-$bgcolor: #000000;
-$fontcolor: #FFFFFF;
-$fontsize: 1.75em;
+$bgcolor: #FFFFFF;
+$fontcolor: #000000;
 $minioncolor: #FF0000;
-
 
 body{
   background-color: $bgcolor;
   font-family: $fonttype;
   color: $fontcolor;
-  font-size: $fontsize;
 }
 
-.container-fluid{
-
-  .sidebar-nav {
-    margin-top: 20px;
-    padding: 0;
-    list-style: none;
-  }
-  a {
-      text-decoration: none;
-      color: $minioncolor;
-      font-weight: bold;
-  }
-  a:hover {
-      text-decoration: underline;
-      color: $fontcolor;
-  }
-
-  strong {
-    color: $minioncolor;
-  }
-
-  .margin-twentypx {
-    margin-top: 20px;
-  }
-
-  .thumbnail, .caption {
-    background-color: $bgcolor;
-    color: $fontcolor;
-    border-style: none;
-  }
-
-  h1, .caption > h3 {
-    color: #FF0000;
-  }
-}
 
 .no-style{
   background-color: #FFFFFF;
@@ -62,19 +24,4 @@ body{
 .inverse-style>input{
   background-color: $bgcolor;
   color: $fontcolor;
-}
-
-
-#single-minion {
-  margin-top: 20px;
-  select option {
-    background: $bgcolor;
-
-  }
-  input {
-    background: $bgcolor;
-  }
-  textarea {
-    background: $bgcolor;
-  }
 }

@@ -4,39 +4,9 @@ Date: 2019-07-24
 Title: Server Web Form
 **********/
 body {
-  background-color: #000000;
+  background-color: #FFFFFF;
   font-family: "Times New Roman", "Georgia", sans-serif;
-  color: #FFFFFF;
-  font-size: 1.75em;
-}
-
-.container-fluid .sidebar-nav {
-  margin-top: 20px;
-  padding: 0;
-  list-style: none;
-}
-.container-fluid a {
-  text-decoration: none;
-  color: #FF0000;
-  font-weight: bold;
-}
-.container-fluid a:hover {
-  text-decoration: underline;
-  color: #FFFFFF;
-}
-.container-fluid strong {
-  color: #FF0000;
-}
-.container-fluid .margin-twentypx {
-  margin-top: 20px;
-}
-.container-fluid .thumbnail, .container-fluid .caption {
-  background-color: #000000;
-  color: #FFFFFF;
-  border-style: none;
-}
-.container-fluid h1, .container-fluid .caption > h3 {
-  color: #FF0000;
+  color: #000000;
 }
 
 .no-style {
@@ -45,21 +15,8 @@ body {
 }
 
 .inverse-style > input {
-  background-color: #000000;
-  color: #FFFFFF;
-}
-
-#single-minion {
-  margin-top: 20px;
-}
-#single-minion select option {
-  background: #000000;
-}
-#single-minion input {
-  background: #000000;
-}
-#single-minion textarea {
-  background: #000000;
+  background-color: #FFFFFF;
+  color: #000000;
 }
 
 /*# sourceMappingURL=styles.css.map */
