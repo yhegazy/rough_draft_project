@@ -16,9 +16,10 @@ exist.
 Resolution:
 ./manage.py shell
 
->>> from django.contrib.sites.models import Site
->>> site = Site.objects.create(domain='127.0.0.1', name='test')
->>> site.save()
->>> quit()
+Type the following lines to resolve this error:
+from django.contrib.sites.models import Site
+site = Site.objects.create(domain='127.0.0.1', name='test')
+site.save()
+quit()
 
 
