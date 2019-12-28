@@ -23,6 +23,15 @@ class SiteInformationCreate(LoginRequiredMixin, CreateView):
     fields = '__all__'
 
 
+class MinionCreate(LoginRequiredMixin, CreateView):
+    login_url = '/accounts/login/'
+    redirect_field_name = 'redirect_to'
+
+    model = SiteInformation
+    fields = '__all__'
+
+
+
 class SiteInformationUpdate(LoginRequiredMixin, UpdateView):
     login_url = '/accounts/login'
     redirect_field_name = 'redirect_to'

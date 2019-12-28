@@ -29,7 +29,7 @@
             <th>Server Type</th>
             <th>Disk Configuration</th>
             <th>CPU || RAM</th>
-            <th> </th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -47,8 +47,6 @@
               {% else %}
             </tr>
               {% endif %}
-             
-             <!----> 
             </td>
           </tr>
           {% endfor %}
@@ -76,7 +74,13 @@
           {% endif %}
       {% endblock %}
 
-
+    {% if user.is_authenticated %}
+    <p>Create New Entry?
+      <button>  
+        <a href="{% url 'record_create' %}">Create</a>
+      </button>
+    </p>
+    {% endif %}
       
     {% else %}
       <p>No results found.</p>

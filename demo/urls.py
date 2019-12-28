@@ -19,6 +19,7 @@ urlpatterns = [
 urlpatterns += [
     re_path('^$', views.SiteInformationList.as_view()),
     re_path(r'^hospitalsite/$', views.SiteInformationList.as_view(), name='index'),
+    re_path(r'^hospitalsite/create/$', views.SiteInformationCreate.as_view(), name='record_create'), 
     re_path(r'^hospitalsite/(?P<pk>\d+)/update/$', views.SiteInformationUpdate.as_view(), name='record_update'),
     re_path(r'^hospitalsite/(?P<pk>\d+)$',  views.SiteInformationList.as_view(), name='index'),
 
