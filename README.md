@@ -17,9 +17,13 @@ Resolution:
 ./manage.py shell
 
 Type the following lines to resolve this error:
+
 from django.contrib.sites.models import Site
+
 site = Site.objects.create(domain='127.0.0.1', name='test')
+
 site.save()
+
 quit()
 
 
