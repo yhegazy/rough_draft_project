@@ -13,9 +13,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
+    #Add Flatpages and sites
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    
+    #Add APPS
     'demo',
-    'core'   
+    'core',   
 ]
 
 MIDDLEWARE = [

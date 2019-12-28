@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+  {% load flatpages %}
+    {% for page in flatpages %}
+    <ul><li><a href="/pages{{ page.url }}">{{ page.title }}</a></li></ul>
+    {% endfor %}
+   
     <h1>Welcome to Boilerplate</h1>
     <p>This is a basic view of how django works.</p>
 
@@ -12,33 +17,67 @@
         <p>Gotta log in to see the admin stuff</p>
     {% endif %}
     
-    <h3>Site Name</h3>
+    <h3>Site Information</h3>
 
-    {% if test %}
-   
+    {% if siteinformation %}   
     <table class="ui celled table">
         <thead>
           <tr>
             <th>Name</th>
-            <th>Status</th>
-            <th>Edit</th>
+            <th>Asset Number</th>
+            <th>Version #</th>
+            <th>Server Type</th>
+            <th>Disk Configuration</th>
+            <th>CPU || RAM</th>
+            <th> </th>
           </tr>
         </thead>
         <tbody>
-          {% for x in test %}
+          {% for x in siteinformation %}
           <tr>
-            <td>{{ x.Name }} </td>
-            <td class="top aligned">
-                Asset Number<br>
-                1<br>
-                2<br>
+            <td>{{ x.Hospital_Name }} </td>
+            <td>{{ x.Asset_Number }}</td>
+            <td>{{ x.Current_Radimetrics_Version }}</td>
+            <td>{{ x.Type_Of_Server }}</td>
+            <td>{{ x.Current_Disks }}</td>
+            <td>{{ x.Current_CPU }} || {{ x.Current_RAM }}</td>
             <td class="selectable">
-              <a href="#">Edit</a>
+              {% if user.is_authenticated %}
+              <a href="{% url 'record_update' pk=x.id %}">Edit</a>
+              {% else %}
+            </tr>
+              {% endif %}
+             
+             <!----> 
             </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
+
+      <!--Pagination breaking dictsort-->
+      {% block pagination %}
+        {% if is_paginated %}
+          <div class="pagination">
+            <span class="page-links">
+              {% if page_obj.has_previous %}
+                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+
+              <span class="page-current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+
+              {% if page_obj.has_next %}
+                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+              {% endif %}
+            </span>
+          </div>
+          {% endif %}
+      {% endblock %}
+
+
+      
     {% else %}
       <p>No results found.</p>
     {% endif %}

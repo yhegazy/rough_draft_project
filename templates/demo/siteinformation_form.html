@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}  
+    <h1>Hospital Name: {{ siteinformation.Hospital_Name }}</h1>
+    <p>Asset#: {{siteinformation.Asset_Number}}</p>
+    
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        </table>
+        <input type="submit" value="Submit" />
+    </form>
+
+{% endblock %}

@@ -8,3 +8,17 @@
 <p>This is broken down into 2 sections - Core & Demo. Core will contain scripts that pertain to development, while Demo will contain the web app & it's information.</p>
 
 
+#Notes::
+
+ERROR: django.contrib.sites.models.Site.DoesNotExist: Site matching query does not 
+exist.
+
+Resolution:
+./manage.py shell
+
+>>> from django.contrib.sites.models import Site
+>>> site = Site.objects.create(domain='127.0.0.1', name='test')
+>>> site.save()
+>>> quit()
+
+
