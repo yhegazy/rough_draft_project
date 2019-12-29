@@ -3,9 +3,13 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import SiteInformation
-	
+from django.http import HttpResponseRedirect
+
 def home(request):
 	return render(request, "index.html", {})
+
+def redirect_admin_url(request):
+    return HttpResponseRedirect('admin/demo/')
 
 
 class SiteInformationList(generic.ListView):

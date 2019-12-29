@@ -78,10 +78,7 @@
       {% endblock %}
 
     {% if user.is_authenticated %}
-    <p>Create New Entry?
-      <button>  
-        <a href="{% url 'record_create' %}">Create</a>
-      </button>
+    <button><a href="{% url 'record_create' %}">Create new entry</a></button>
     </p>
     {% endif %}
       
