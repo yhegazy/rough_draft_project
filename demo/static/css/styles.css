@@ -1,6 +1,7 @@
 /**********
 Author: Yahia Hegazy
-Date: 2019-07-24
+Created: 20190724
+Updated: 20191228
 Title: Server Web Form
 **********/
 body {
@@ -9,14 +10,16 @@ body {
   color: #000000;
 }
 
-.no-style {
-  background-color: #FFFFFF;
-  color: #000000;
+.red {
+  background-color: #FF0000;
 }
 
-.inverse-style > input {
-  background-color: #FFFFFF;
-  color: #000000;
+.yellow {
+  background-color: #FFFF00;
+}
+
+.green {
+  background-color: #00FF00;
 }
 
 /*# sourceMappingURL=styles.css.map */

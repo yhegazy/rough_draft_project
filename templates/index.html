@@ -23,7 +23,7 @@
     <table class="ui celled table">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Hospital Name</th>
             <th>Asset Number</th>
             <th>Version #</th>
             <th>Server Type</th>
@@ -37,10 +37,13 @@
           <tr>
             <td>{{ x.Hospital_Name }} </td>
             <td>{{ x.Asset_Number }}</td>
-            <td>{{ x.Current_Radimetrics_Version }}</td>
+            <td style="{% if x.Current_Radimetrics_Version == '2.9.1b' %}background-color:#00FF00{% endif %}
+            {% if x.Current_Radimetrics_Version == '2.7a' %}background-color:#FFFF00{% endif %}
+            {% if x.Current_Radimetrics_Version == '2.3a' %}background-color:#FF0000{% endif %}">
+            {{ x.Current_Radimetrics_Version }}</td>
             <td>{{ x.Type_Of_Server }}</td>
             <td>{{ x.Current_Disks }}</td>
-            <td>{{ x.Current_CPU }} || {{ x.Current_RAM }}</td>
+            <td>{{ x.Current_CPU }} Cores || {{ x.Current_RAM }} GB</td>
             <td class="selectable">
               {% if user.is_authenticated %}
               <a href="{% url 'record_update' pk=x.id %}">Edit</a>
@@ -63,7 +66,7 @@
               {% endif %}
 
               <span class="page-current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
               </span>
 
               {% if page_obj.has_next %}

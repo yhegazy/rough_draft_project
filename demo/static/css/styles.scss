@@ -1,13 +1,16 @@
 /**********
 Author: Yahia Hegazy
-Date: 2019-07-24
+Created: 20190724
+Updated: 20191228
 Title: Server Web Form
 **********/
 
 $fonttype: "Times New Roman", "Georgia", sans-serif;
 $bgcolor: #FFFFFF;
 $fontcolor: #000000;
-$minioncolor: #FF0000;
+$red: #FF0000;
+$yellow: #FFFF00;
+$green: #00FF00;
 
 body{
   background-color: $bgcolor;
@@ -15,13 +18,6 @@ body{
   color: $fontcolor;
 }
 
-
-.no-style{
-  background-color: #FFFFFF;
-  color: #000000;
-}
-
-.inverse-style>input{
-  background-color: $bgcolor;
-  color: $fontcolor;
-}
+.red{background-color: $red;}
+.yellow{background-color: $yellow;}
+.green{background-color: $green;}
