@@ -37,9 +37,14 @@
           <tr>
             <td>{{ x.Hospital_Name }} </td>
             <td>{{ x.Asset_Number }}</td>
-            <td style="{% if x.Current_Radimetrics_Version == '2.9.1b' %}background-color:#00FF00{% endif %}
-            {% if x.Current_Radimetrics_Version == '2.7a' %}background-color:#FFFF00{% endif %}
-            {% if x.Current_Radimetrics_Version == '2.3a' %}background-color:#FF0000{% endif %}">
+
+            {% if x.Current_Radimetrics_Version == '2.9.1b' or x.Current_Radimetrics_Version == '2.9b' %}
+            <td style="background-color: #00FF00;">
+            {% elif x.Current_Radimetrics_Version == '2.8b' or x.Current_Radimetrics_Version == '2.7a' or  x.Current_Radimetrics_Version == '2.7.1' or  x.Current_Radimetrics_Version == '2.6a' or x.Current_Radimetrics_Version == '2.5.1b' %}
+            <td style="background-color: #FFFF00;">
+            {% else %}
+            <td style="background-color: #FF0000;">
+            {% endif %}
             {{ x.Current_Radimetrics_Version }}</td>
             <td>{{ x.Type_Of_Server }}</td>
             <td>{{ x.Current_Disks }}</td>

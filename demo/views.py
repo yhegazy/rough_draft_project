@@ -8,16 +8,12 @@ from django.http import HttpResponseRedirect
 def home(request):
 	return render(request, "index.html", {})
 
-def redirect_admin_url(request):
-    return HttpResponseRedirect('admin/demo/')
-
-
 class SiteInformationList(generic.ListView):
 	model = SiteInformation
 	context_object_name = 'siteinformation' 
 	template_name = 'index.html'
 
-	paginate_by = 5
+	paginate_by = 10
 
 class SiteInformationCreate(LoginRequiredMixin, CreateView):
     login_url = '/accounts/login/'
