@@ -1,94 +1,87 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% load flatpages %}
-    {% for page in flatpages %}
-    <ul><li><a href="/pages{{ page.url }}">{{ page.title }}</a></li></ul>
-    {% endfor %}
-   
-    <h1>Welcome to Boilerplate</h1>
-    <p>This is a basic view of how django works.</p>
+{% load flatpages %}
+<h1>Radimetrics Site Information</h1>
+<p>Welcome to the upgrade/migration status page. Click on either the Hospital Name or it's Asset # for more details.</p>
 
-    {% if user.is_authenticated %}
-    <p><a href="/admin/demo">Admin Login</a></p>
-    <p>username: <b>superuser</b></p>
-    <p>password: <b>drowssap</b></p> 
-    {% else %}
-        <p>Gotta log in to see the admin stuff</p>
-    {% endif %}
+{% if user.is_authenticated and request.user.is_superuser %}
+  <p><a href="/admin/demo">Admin Login</a></p>
+  <p>username: <b>superuser</b></p>
+  <p>password: <b>drowssap</b></p> 
+{% endif %}
     
-    <h3>Site Information</h3>
+<h3>Site Information</h3>
 
-    {% if siteinformation %}   
-    <table class="ui celled table">
-        <thead>
-          <tr>
-            <th>Hospital Name</th>
-            <th>Asset Number</th>
-            <th>Version #</th>
-            <th>Server Type</th>
-            <th>Disk Configuration</th>
-            <th>CPU || RAM</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for x in siteinformation %}
-          <tr>
-            <td>{{ x.Hospital_Name }} </td>
-            <td>{{ x.Asset_Number }}</td>
+<div class="column">
+  {% if siteinformation %}   
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Hospital Name</th>
+        <th>Asset Number</th>
+        <th>Version #</th>
+        <th>Server Type</th>
+        <th>Disk Configuration</th>
+        <th>CPU || RAM</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for x in siteinformation %}
+      <tr>
+        <td><a href="{% url 'asset_detail' pk=x.id %}">{{ x.Hospital_Name }}</a></td>
+        <td><a href="{% url 'asset_detail' pk=x.id %}">{{ x.Asset_Number }}</a></td>
 
-            {% if x.Current_Radimetrics_Version == '2.9.1b' or x.Current_Radimetrics_Version == '2.9b' %}
-            <td style="background-color: #00FF00;">
-            {% elif x.Current_Radimetrics_Version == '2.8b' or x.Current_Radimetrics_Version == '2.7a' or  x.Current_Radimetrics_Version == '2.7.1' or  x.Current_Radimetrics_Version == '2.6a' or x.Current_Radimetrics_Version == '2.5.1b' %}
-            <td style="background-color: #FFFF00;">
-            {% else %}
-            <td style="background-color: #FF0000;">
-            {% endif %}
-            {{ x.Current_Radimetrics_Version }}</td>
-            <td>{{ x.Type_Of_Server }}</td>
-            <td>{{ x.Current_Disks }}</td>
-            <td>{{ x.Current_CPU }} Cores || {{ x.Current_RAM }} GB</td>
-            <td class="selectable">
-              {% if user.is_authenticated %}
-              <a href="{% url 'record_update' pk=x.id %}">Edit</a>
-              {% else %}
-            </tr>
-              {% endif %}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-
-      <!--Pagination breaking dictsort-->
-      {% block pagination %}
-        {% if is_paginated %}
-          <div class="pagination">
-            <span class="page-links">
-              {% if page_obj.has_previous %}
-                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-              {% endif %}
-
-              <span class="page-current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-              </span>
-
-              {% if page_obj.has_next %}
-                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-              {% endif %}
-            </span>
-          </div>
+        {% if x.Current_Radimetrics_Version == '2.9.1b' or x.Current_Radimetrics_Version == '2.9b' %}
+        <td style="background-color: #00FF00;">
+        {% elif x.Current_Radimetrics_Version == '2.8b' or x.Current_Radimetrics_Version == '2.7a' or  x.Current_Radimetrics_Version == '2.7.1' or  x.Current_Radimetrics_Version == '2.6a' or x.Current_Radimetrics_Version == '2.5.1b' %}
+        <td style="background-color: #FFFF00;">
+        {% else %}
+        <td style="background-color: #FF0000;">
+        {% endif %}
+        {{ x.Current_Radimetrics_Version }}</td>
+        <td>{{ x.Type_Of_Server }}</td>
+        <td>{{ x.Current_Disks }}</td>
+        <td>{{ x.Current_CPU }} Cores || {{ x.Current_RAM }} GB</td>
+        <td class="selectable">
+          {% if user.is_authenticated %}
+          <a href="{% url 'record_update' pk=x.id %}">Edit</a>
+          {% else %}
+        </tr>
           {% endif %}
-      {% endblock %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-    {% if user.is_authenticated %}
-    <button><a href="{% url 'record_create' %}">Create new entry</a></button>
-    </p>
-    {% endif %}
-      
-    {% else %}
-      <p>No results found.</p>
-    {% endif %}
+  <!--Pagination breaking dictsort-->
+  {% block pagination %}
+    {% if is_paginated %}
+      <div class="pagination">
+        <span class="page-links">
+          {% if page_obj.has_previous %}
+            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
 
+        <span class="page-current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+        {% endif %}
+      </div>  
+    {% endif %}
+  {% endblock %}
+
+  {% if user.is_authenticated %}
+  <button><a href="{% url 'record_create' %}">Create new entry</a></button>
+  {% endif %}
+  
+{% else %}
+  <p>No results found.</p>
+{% endif %}
+</div>
 {% endblock %}

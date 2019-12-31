@@ -22,6 +22,7 @@ urlpatterns += [
     re_path(r'^hospitalsite/create/$', views.SiteInformationCreate.as_view(), name='record_create'), 
     re_path(r'^hospitalsite/(?P<pk>\d+)/update/$', views.SiteInformationUpdate.as_view(), name='record_update'),
     re_path(r'^hospitalsite/(?P<pk>\d+)$',  views.SiteInformationList.as_view(), name='index'),
+    re_path(r'^hospitalsite/details/(?P<pk>\d+)$', views.SiteInformationDetail.as_view(), name='asset_detail'),
 
 ]
 

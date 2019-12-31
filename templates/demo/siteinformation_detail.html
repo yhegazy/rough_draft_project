@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %} 
+<h4>Site Information</h4>
+<p>Hospital Name</p>:: {{ siteinformation.Hospital_Name }}
+<p>Asset Number</p>:: {{ siteinformation.Asset_Number }}
+<p>Version #</p>::  {{ siteinformation.Current_Radimetrics_Version }}  <!--#Color code this as well-->
+
+<h4>Server Hardware</h4>
+
+<p>Disk Sizes</p>:: {{ siteinformation.Current_Disks }}
+<p>CPU</p>{{ siteinformation.Current_CPU }} Cores
+<p>RAM</p>:: {{ siteinformation.Current_RAM }} GB
+<p>Server Type:: {{ siteinformation.Type_Of_Server }}</p>
+
+<h4>Database information</h4>
+<p>Postgres Version:</p>
+<p>Exposure DB Size:</p>
+<p>Mirth DB Size:</p>
+<p></p>
+
+<h4>Other Information</h4>
+<p>Hostname:</p>
+<p>IP Address: </p>
+<p>Server Notes: </p>
+
+<div class="four wide">
+    {% if user.is_authenticated %}
+    <a href="{% url 'record_update' pk=siteinformation.id %}">Edit Entry</a>
+    {% endif %}
+</div>
+    
+{% endblock %}
