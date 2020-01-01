@@ -26,16 +26,16 @@ class SiteInformation(models.Model):
     Asset_Number = models.CharField(max_length=50, blank=False, default="", help_text="ie: 50001201161")
     Current_OS_Version = models.CharField(max_length=10, choices=CURRENT_OS_VERSION, blank=True, default='-', help_text='Current OS Version')
     Current_Radimetrics_Version = models.CharField(max_length=10, blank=False, default='2.9.1b', help_text='ie: 2.9.1b ')
-
-  
     Type_Of_Server =  models.CharField(max_length=20, choices=TYPE_OF_SERVER, blank=False, default='-', help_text='Server Type')
-
     Current_Disks = models.CharField(max_length=50, blank=False, default="", help_text="ie: 100/100/200")
     Current_CPU = models.CharField(max_length=5, blank=False, default="", help_text="ie: 4")
     Current_RAM = models.CharField(max_length=5, blank=False, default="", help_text="ie: 16")
-    
-  
-    #Current_Radimetrics_Requirements = models.CharField(max_length=10, blank=False, default='2.9.1b', help_text='Color Coded Red for current_rad_version=<2.4a, Yellow for current_rad_version=<2.9b and Green for current_rad_version == minimum_rad_version')
+    DB_Version = models.CharField(max_length=5, blank=True, default="", help_text="ie: 8.4")
+    ExposureDB_Size = models.CharField(max_length=50, blank=True, default="", help_text="ie: 600")
+    MirthDB_Size = models.CharField(max_length=50, blank=True, default="", help_text="ie: 5")
+    Site_Hostname = models.CharField(max_length=100, blank=True, default="", help_text="ie: eXposure.domain.local")
+    Site_IP_Address = models.CharField(max_length=100, blank=True, default="", help_text="ie: 127.0.0.1")
+    Notes = models.TextField(max_length=1250, blank=True, default="")
  
     #Case_Number_Details = models.ForeignKey(ServiceMaxCase, on_delete=models.SET_NULL, null=True, help_text="Case Number Details")
 

@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %} 
-<h4>Site Information</h4>
-<p>Hospital Name</p>:: {{ siteinformation.Hospital_Name }}
-<p>Asset Number</p>:: {{ siteinformation.Asset_Number }}
-<p>Version #</p>::  {{ siteinformation.Current_Radimetrics_Version }}  <!--#Color code this as well-->
+<h2>Site Information</h2>
+<h3>Hospital Name: {{ siteinformation.Hospital_Name }}</h3>
+<h3>Asset Number: {{ siteinformation.Asset_Number }}</h3>
+<h3>Version #:  {{ siteinformation.Current_Radimetrics_Version }}</h3>  <!--#Color code this as well-->
 
 <h4>Server Hardware</h4>
 
-<p>Disk Sizes</p>:: {{ siteinformation.Current_Disks }}
-<p>CPU</p>{{ siteinformation.Current_CPU }} Cores
-<p>RAM</p>:: {{ siteinformation.Current_RAM }} GB
-<p>Server Type:: {{ siteinformation.Type_Of_Server }}</p>
+<p>Disk Sizes: {{ siteinformation.Current_Disks }}</p>
+<p>CPU: {{ siteinformation.Current_CPU }} Cores</p>
+<p>RAM: {{ siteinformation.Current_RAM }} GB</p>
+<p>Server Type: {{ siteinformation.Type_Of_Server }}</p>
 
 <h4>Database information</h4>
-<p>Postgres Version:</p>
-<p>Exposure DB Size:</p>
-<p>Mirth DB Size:</p>
-<p></p>
+<p>Postgres Version: {{ siteinformation.DB_Version }}</p>
+<p>Exposure DB Size: {{ siteinformation.ExposureDB_Size }} </p>
+<p>Mirth DB Size: {{siteinformation.MirthDB_Size }}</p>
+
 
 <h4>Other Information</h4>
-<p>Hostname:</p>
-<p>IP Address: </p>
-<p>Server Notes: </p>
+<p>Hostname: {{ siteinformation.Site_Hostname }}</p>
+<p>IP Address: {{ siteinformation.Site_IP_Address }} </p>
+<p>Server Notes: {{ siteinformation.Notes }}</p>
 
 <div class="four wide">
     {% if user.is_authenticated %}
