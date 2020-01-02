@@ -11,6 +11,23 @@
   <p>password: <b>drowssap</b></p> 
 {% endif %}
     
+<h3>Test</h3>
+{% for test in site_info %}
+      {% if forloop.first %}<div class="row">{% endif %}
+        <div class="col-md-4">
+          <div class="caption">
+            <h3>{{ test.Account_Name }}</h3>
+            <p>{{ test.Site_Name.Hospital_Name }}</p>
+            <p>{{ test.Site_Name.Asset_Number }}</p>
+          </div>
+        {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+        {% if forloop.last %}</div>{% endif %}
+
+        {% endfor %}
+
+
+
+******************
 <h3>Site Information</h3>
 
 <div class="column">
@@ -29,6 +46,7 @@
     </thead>
     <tbody>
     {% for x in siteinformation %}
+    
       <tr>
         <td><a href="{% url 'asset_detail' pk=x.id %}">{{ x.Hospital_Name }}</a></td>
         <td><a href="{% url 'asset_detail' pk=x.id %}">{{ x.Asset_Number }}</a></td>
