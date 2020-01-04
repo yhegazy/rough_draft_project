@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}  
 
-<h1>Create New Site</h1>
+<h1>Site Information & Details</h1>
 <form action="" method="post">
     {% csrf_token %}
     <table>
     {{ form }}
     </table>
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit" class="btn btn-link" />
 </form>  
 
 {% endblock %}

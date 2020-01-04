@@ -7,32 +7,24 @@ from . import views
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('demo/', home, name='home'),
-    path('admin/demo/', admin.site.urls, name='admin'),
-    path('demo/', include('django.contrib.auth.urls')),
+    path('hospital/', home, name='home'),
+    path('hospital/', include('django.contrib.auth.urls')),
+    path('admin/', admin.site.urls, name='admin'),
 ]
 
 """
 20190723:: I fully do not understand how Django 2.2 path() function works. I understand re_path, or Django 1.X  - url(), and so urlpatterns that should seem to work in path and does not, should be rewritten as a re_path.
 """  
-
-#Site Information URLs
+    
 urlpatterns += [
     re_path('^$', views.SiteInformationList.as_view()),
     re_path(r'^hospitalsite/$', views.SiteInformationList.as_view(), name='index'),
-    re_path(r'^hospitalsite/$', views.AccountInformationList.as_view(), name='index'),
     re_path(r'^hospitalsite/create/$', views.SiteInformationCreate.as_view(), name='record_create'), 
     re_path(r'^hospitalsite/(?P<pk>\d+)/update/$', views.SiteInformationUpdate.as_view(), name='record_update'),
     re_path(r'^hospitalsite/(?P<pk>\d+)$',  views.SiteInformationList.as_view(), name='index'),
     re_path(r'^hospitalsite/details/(?P<pk>\d+)$', views.SiteInformationDetail.as_view(), name='asset_detail'),
 
 ]
-
-#Account Information URLs
-urlpatterns += [
-    re_path(r'^account/$', views.AccountInformationList.as_view(), name='index'),
-]
-
 
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [

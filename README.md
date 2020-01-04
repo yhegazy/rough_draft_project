@@ -8,9 +8,7 @@
 <p>This is broken down into 2 sections - Core & Demo. Core will contain scripts that pertain to development, while Demo will contain the web app & it's information.</p>
 
 
-
-<h3>Bugs/Problems & Solutions</h3>
-#Notes::20191226
+#Notes::
 
 ERROR: django.contrib.sites.models.Site.DoesNotExist: Site matching query does not 
 exist.

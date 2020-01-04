@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/semanticUI/semantic.min.css' %}">  
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">  
     
 </head>
 <body>
+    
     <div class="ui secondary  menu">
         {% if user.is_authenticated %}
             <p class="item"> Welcome: {{ user.get_username }}</p>
@@ -19,16 +21,17 @@
             <p class="item">Welcome: <a class="item" href="{% url 'login'%}?next={{request.path}}">Login</a></p>
         {% endif %}
         <a class="item" a href="/hospitalsite/">Home</a>
-       
-        <div class="item">
-            <div class="ui icon input">
-                <input type="text" placeholder="Search...">
-                <i class="search link icon"></i>
-            </div>
+        {% load flatpages %}
+        {% get_flatpages as flatpages %}
+        {% for page in flatpages %}
+        <a class="item" href="/pages{{ page.url }}">{{ page.title }}<a>
+        {% endfor %}
+
         </div>
     </div>
+    <div class="container-fluid">
     {% block content %}
     {% endblock %}
-    
+    </div>
 </body>
 </html>
