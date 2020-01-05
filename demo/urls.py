@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import RedirectView
-from .views import home
+from .views import home, status
 from . import views
 from django.conf.urls.static import static
 
@@ -23,7 +23,8 @@ urlpatterns += [
     re_path(r'^hospitalsite/(?P<pk>\d+)/update/$', views.SiteInformationUpdate.as_view(), name='record_update'),
     re_path(r'^hospitalsite/(?P<pk>\d+)$',  views.SiteInformationList.as_view(), name='index'),
     re_path(r'^hospitalsite/details/(?P<pk>\d+)$', views.SiteInformationDetail.as_view(), name='asset_detail'),
-
+    re_path(r'status/$', status, name='status'),
+    
 ]
 
 #Add Django site authentication urls (for login, logout, password management)

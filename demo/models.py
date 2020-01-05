@@ -6,7 +6,7 @@ class SiteInformation(models.Model):
     #do drop down builds here:
     CURRENT_OS_VERSION = (
         ('-', 'Pick One'),
-        ('RedHat', 'RHEL'),
+        ('RedHat', 'RedHat'),
         ('OpenSuse', 'OpenSuse'),
         ('CentOS', 'CentOS'),
     )

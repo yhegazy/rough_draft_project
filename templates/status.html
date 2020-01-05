@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}  
+
+<h1>Site Status</h1>
+<p>A collection of other oddities that deserve it's own page</p>
+<!-- Also, coding sucks. -->
+<h4>Total # of Servers</h4>
+<p>{{ server_count }}</p>
+
+<h4>Breakdowns</h4>
+<p>Tables! </p>
+
+<h5>Release Status</h5>
+<table class="table table-responsive-sm">
+    <tbody>
+        <tr>
+          <th>Release Status</th>
+            <td class="table-success">Current (>=2.9X) </td>
+            <td class="table-warning">Outdated (2.5a - 2.8b)</td>
+            <td class="table-danger">Deprecated/Obsolete (&lt;2.5a)</td>
+        </tr>
+        <tr>
+            <th></th>
+              <td>{{ current_release_count }}</td>
+              <td> {{ sum_of_outdated }} </td>
+              <td>{{ sum_of_deprecated }} </td>
+          </tr>
+    </tbody>    
+</table>
+
+<h5>Radimetrics Version #</h5>
+<table class="table">
+    <tbody>
+        <tr>
+          <th>Version</th>
+            <td>2.9.1b</td>
+            <td>2.9b</td>
+            <td>2.8b</td>
+            <td>2.7.1</td>
+            <td>2.7a</td>
+            <td>2.6b</td>
+            <td>2.5.1b</td>
+           
+        </tr>
+        <tr>
+          <th></th>
+          <td>{{ ver291b }}</td>
+          <td>{{ ver29b }}</td>
+          <td>{{ ver28b }}</td>
+          <td>{{ ver271 }}</td>
+          <td>{{ ver27a }}</td>
+          <td>{{ver26b }}</td>
+          <td>{{ ver251b }}</td>
+        </tr> 
+    </tbody>
+</table>
+
+<h5>Distro Flavors</h5>
+<table class="table">
+    <tbody>
+        <tr>
+          <th>Version</th>
+            <td>RedHat</td>
+            <td>OpenSuse</td>
+            <td>CentOS</td>
+        </tr>
+        <tr>
+          <th></th>
+          <td>{{ rhel }}</td>
+          <td>{{ suse }}</td>
+          <td>{{ cent }}</td>
+        </tr> 
+    </tbody>
+</table>
+
+{% endblock %}
