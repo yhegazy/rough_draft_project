@@ -6,10 +6,9 @@ class SiteInformationAdmin(admin.ModelAdmin):
     #https://docs.djangoproject.com/en/2.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.fieldsets
     fieldsets = (
         (None, {
-            'fields': ('Hospital_Name', 'Asset_Number',)
+            'fields': ('Hospital_Name', 'Asset_Number', 'Current_Radimetrics_Version', 'Type_Of_Server', 'Notes')
         }),
-        ('More options', {
-            'classes': ('collapse',),
-            'fields': ('Current_Disks', 'Current_CPU', 'Current_RAM', 'Current_Radimetrics_Version', ('Current_OS_Version', 'Type_Of_Server', )),
+        ('Server Type Details ', {
+            'fields': ('Site_Hostname', 'Site_IP_Address', 'Current_OS_Version', 'Disk_1', 'Disk_2', 'Disk_3', 'Current_CPU', 'Current_RAM', 'DB_Version', ('ExposureDB_Size', 'MirthDB_Size', )),
         }),
     )

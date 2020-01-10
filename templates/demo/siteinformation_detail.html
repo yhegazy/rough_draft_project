@@ -2,27 +2,47 @@
 
 {% block content %} 
 <h2>Site Information</h2>
-<h3>Hospital Name: {{ siteinformation.Hospital_Name }}</h3>
-<h3>Asset Number: {{ siteinformation.Asset_Number }}</h3>
-<h3>Version #:  {{ siteinformation.Current_Radimetrics_Version }}</h3>  <!--#Color code this as well-->
+<div class="row">
+    <div class="col-4">
+        <h3>Hospital Name: {{ siteinformation.Hospital_Name }}</h3>
+        <h3>Asset Number: {{ siteinformation.Asset_Number }}</h3>
+        <h3>Version #:  {{ siteinformation.Current_Radimetrics_Version }}</h3>  <!--#Color code this as well-->
+        <p>Server Notes: {{ siteinformation.Notes }}</p>
+    </div>
+    <div class="col-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              Server Hardware
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Server Type: {{ siteinformation.Type_Of_Server }}</li>
+              <li class="list-group-item">Distro Flavor:  {{ siteinformation.Current_OS_Version }}</li>
+              <li class="list-group-item">Hostname: {{ siteinformation.Site_Hostname }}</li>
+              <li class="list-group-item">IP Address: {{ siteinformation.Site_IP_Address }} </li>
+              <li class="list-group-item">Disk 1: {{ siteinformation.Disk_1 }}  </li>
+              <li class="list-group-item">Disk 2: {{ siteinformation.Disk_2 }}  </li>
+              <li class="list-group-item">Disk 3: {{ siteinformation.Disk_3 }}  </li>
+              <li class="list-group-item">CPU: {{ siteinformation.Current_CPU }} Cores  </li>
+              <li class="list-group-item">RAM: {{ siteinformation.Current_RAM }} GB  </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              Database Information
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Postgres Version: {{ siteinformation.DB_Version }}</li>
+              <li class="list-group-item">Exposure DB Size (GB): {{ siteinformation.ExposureDB_Size }} </li>
+              <li class="list-group-item">Mirth DB Size (GB): {{siteinformation.MirthDB_Size }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-<h4>Server Hardware</h4>
-<p>Distro Flavor:  {{ siteinformation.Current_OS_Version }}</p>
-<p>Disk Sizes: {{ siteinformation.Current_Disks }}</p>
-<p>CPU: {{ siteinformation.Current_CPU }} Cores</p>
-<p>RAM: {{ siteinformation.Current_RAM }} GB</p>
-<p>Server Type: {{ siteinformation.Type_Of_Server }}</p>
-
-<h4>Database information</h4>
-<p>Postgres Version: {{ siteinformation.DB_Version }}</p>
-<p>Exposure DB Size: {{ siteinformation.ExposureDB_Size }} </p>
-<p>Mirth DB Size: {{siteinformation.MirthDB_Size }}</p>
 
 
-<h4>Other Information</h4>
-<p>Hostname: {{ siteinformation.Site_Hostname }}</p>
-<p>IP Address: {{ siteinformation.Site_IP_Address }} </p>
-<p>Server Notes: {{ siteinformation.Notes }}</p>
 
 <div class="four wide">
     {% if user.is_authenticated %}

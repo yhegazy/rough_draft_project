@@ -2,9 +2,11 @@
 
 {% block content %}
 
-<h1>Radimetrics Site Information</h1>
-<p>Welcome to the upgrade/migration status page. Click on either the Hospital Name or it's Asset # for more details.</p>
+<h2>Server Status Page</h2>
+<p>This is a simple server status page. Click on either Site Name (Hospital Name) or it's Serial Tag (Asset#) for more details. Pagination is hard coded at 10 items per page.</p>
 
+<h3>Admin Page</h3>
+<p>Only viewed when admin is logged in. It has it's merits.</p>
 {% if user.is_authenticated and request.user.is_superuser %}
   <p><a href="/admin">Admin Login</a></p>
   <p>username: <b>superuser</b></p>
@@ -21,7 +23,7 @@
         <th scope="col">Asset Number</th>
         <th scope="col">Version #</th>
         <th scope="col">Server Type</th>
-        <th scope="col">Disk Configuration</th>
+        <th scope="col">Disk 1 || Disk 2 || Disk 3</th>
         <th scope="col">CPU || RAM</th>
         <th scope="col"></th>
       </tr>
@@ -41,7 +43,7 @@
         {% endif %}
         {{ x.Current_Radimetrics_Version }}</td>
         <td>{{ x.Type_Of_Server }}</td>
-        <td>{{ x.Current_Disks }}</td>
+        <td>{{ x.Disk_1 }} || {{ x.Disk_2 }} || {{ x.Disk_3 }}</td>
         <td>{{ x.Current_CPU }} Cores || {{ x.Current_RAM }} GB</td>
         <td class="selectable">
           {% if user.is_authenticated %}
