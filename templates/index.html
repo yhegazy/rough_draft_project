@@ -19,8 +19,8 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Hospital Name</th>
-        <th scope="col">Asset Number</th>
+        <th scope="col">Site Name</th>
+        <th scope="col">Serial Number</th>
         <th scope="col">Version #</th>
         <th scope="col">Server Type</th>
         <th scope="col">Disk 1 || Disk 2 || Disk 3</th>
@@ -31,8 +31,8 @@
     <tbody>
     {% for x in siteinformation %}
       <tr>
-        <td><a href="{% url 'asset_detail' pk=x.id %}">{{ x.Hospital_Name }}</a></td>
-        <td><a href="{% url 'asset_detail' pk=x.id %}">{{ x.Asset_Number }}</a></td>
+        <td><a href="{% url 'serial_detail' pk=x.id %}">{{ x.Site_Name }}</a></td>
+        <td><a href="{% url 'serial_detail' pk=x.id %}">{{ x.Serial_Number }}</a></td>
 
         {% if x.Current_Radimetrics_Version == '2.9.1b' or x.Current_Radimetrics_Version == '2.9b' %}
         <td style="background-color: #00FF00;">

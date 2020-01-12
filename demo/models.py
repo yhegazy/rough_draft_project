@@ -22,8 +22,8 @@ class SiteInformation(models.Model):
         ('DB', 'DB'),
     )
 
-    Hospital_Name = models.CharField(max_length=100, blank=True, help_text="Hospital Name")
-    Asset_Number = models.CharField(max_length=50, blank=False, default="", help_text="ie: 50001201161")
+    Site_Name = models.CharField(max_length=100, blank=True, help_text="Hospital Name")
+    Serial_Number = models.CharField(max_length=50, blank=False, default="", help_text="ie: 50001201161")
     Current_OS_Version = models.CharField(max_length=10, choices=CURRENT_OS_VERSION, blank=True, default='-', help_text='Current OS Version')
     Current_Radimetrics_Version = models.CharField(max_length=10, blank=False, default='2.9.1b', help_text='ie: 2.9.1b ')
     Type_Of_Server =  models.CharField(max_length=20, choices=TYPE_OF_SERVER, blank=False, default='-', help_text='Server Type')
@@ -38,11 +38,13 @@ class SiteInformation(models.Model):
     Site_Hostname = models.CharField(max_length=100, blank=True, default="", help_text="ie: eXposure.domain.local")
     Site_IP_Address = models.CharField(max_length=100, blank=True, default="", help_text="ie: 127.0.0.1")
     Notes = models.TextField(max_length=1250, blank=True, default="")
+    Decommission = models.BooleanField(default=False)
+    Serial_Removed = models.BooleanField(default=False)
  
     #Case_Number_Details = models.ForeignKey(ServiceMaxCase, on_delete=models.SET_NULL, null=True, help_text="Case Number Details")
 
     class Meta:
-        ordering = ["Hospital_Name"]
+        ordering = ["Site_Name"]
 
 
     def __str__(self):

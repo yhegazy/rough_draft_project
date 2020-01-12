@@ -1,14 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %} 
-<h2>Site Information</h2>
-<div class="row">
-    <div class="col-4">
-        <h3>Hospital Name: {{ siteinformation.Hospital_Name }}</h3>
-        <h3>Asset Number: {{ siteinformation.Asset_Number }}</h3>
-        <h3>Version #:  {{ siteinformation.Current_Radimetrics_Version }}</h3>  <!--#Color code this as well-->
-        <p>Server Notes: {{ siteinformation.Notes }}</p>
+<h2>Site Details</h2>
+{% if siteinformation.Current_Radimetrics_Version == '2.9.1b' or siteinformation.Current_Radimetrics_Version == '2.9b' %}
+<div class="card text-white bg-success mb-2" style="max-width: 30rem;">
+{% elif siteinformation.Current_Radimetrics_Version == '2.8b' or siteinformation.Current_Radimetrics_Version == '2.7a' or  siteinformation.Current_Radimetrics_Version == '2.7.1' or  siteinformation.Current_Radimetrics_Version == '2.6a' or siteinformation.Current_Radimetrics_Version == '2.5.1b' %}
+<div class="card text-white bg-warning mb-2" style="max-width: 30rem;">
+{% else %}
+<div class="card text-white bg-danger mb-2" style="max-width: 30rem;">
+{% endif %}
+    <div class="card-header"><h3>{{ siteinformation.Site_Name }}</h3></div>
+        <div class="card-body">
+            <h5 class="card-title">{{ siteinformation.Serial_Number }}</h5>
+            <h5 class="card-text">{{ siteinformation.Current_Radimetrics_Version }}</h5>  <!--#Color coded to keeep with the theme--></h5>            
+            <h5>
+                {% if user.is_authenticated %}
+                <a href="{% url 'record_update' pk=siteinformation.id %}" class="btn btn-light">Edit</a>
+                {% endif %}
+            </h5>
+        </div>
     </div>
+
+
+<div class="card bg-light mb-2" style="max-width: 30rem;">
+    <div class="card-header"><h3>Server Notes</h3></div>
+        <div class="card-body">
+            <h5 class="card-title">
+            {% if siteinformation.Decommission == False and siteinformation.Serial_Removed == False %}
+                Server Active
+            {% elif siteinformation.Decommission == False and siteinformation.Serial_Removed == True  %}
+                Server not found in Axeda
+            {% elif siteinformation.Decommission == True and siteinformation.Serial_Removed == False  %}
+                Server decommissioned, not removed from Axeda.
+            {% elif siteinformation.Decommission == True and siteinformation.Serial_Removed == True  %}
+                Server decommissioned and removed from Axeda.
+            {% endif %} 
+            </h5>
+            <p class="card-text"> {{ siteinformation.Notes }}</p>
+        </div>
+    </div>
+
+
+<div class="row">
     <div class="col-4">
         <div class="card" style="width: 18rem;">
             <div class="card-header">
@@ -39,15 +72,5 @@
             </ul>
         </div>
     </div>
-</div>
-
-
-
-
-<div class="four wide">
-    {% if user.is_authenticated %}
-    <a href="{% url 'record_update' pk=siteinformation.id %}" class="btn btn-link">Edit Entry</a>
-    {% endif %}
-</div>
-    
+</div>    
 {% endblock %}

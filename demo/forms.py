@@ -12,9 +12,9 @@ class SiteInformationView(FormView):
 
     def form_valid(self, form):
         SiteInformation.objects.update_or_create(
-            'Hospital_Name': form.cleaned_data["Hospital_Name"]
+            'Site_Name': form.cleaned_data["Site_Name"]
             defaults={
-                'Asset_Number': form.cleaned_data["Asset_Number"],
+                'Serial_Number': form.cleaned_data["Serial_Number"],
                 'Current_Radimetrics_Version': form.cleaned_data["Current_Radimetrics_Version"],
                 'Type_Of_Server': form.cleaned_data['Type_Of_Server'],  
                 'Current_Disks':form.cleaned_data['Current_Disks'], 
