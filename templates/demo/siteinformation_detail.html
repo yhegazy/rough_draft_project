@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %} 
-<h2>Site Details</h2>
 {% if siteinformation.Current_Radimetrics_Version == '2.9.1b' or siteinformation.Current_Radimetrics_Version == '2.9b' %}
 <div class="card text-white bg-success mb-2" style="max-width: 30rem;">
 {% elif siteinformation.Current_Radimetrics_Version == '2.8b' or siteinformation.Current_Radimetrics_Version == '2.7a' or  siteinformation.Current_Radimetrics_Version == '2.7.1' or  siteinformation.Current_Radimetrics_Version == '2.6a' or siteinformation.Current_Radimetrics_Version == '2.5.1b' %}
@@ -21,9 +20,9 @@
         </div>
     </div>
 
-
-<div class="card bg-light mb-2" style="max-width: 30rem;">
-    <div class="card-header"><h3>Server Notes</h3></div>
+<div class="row">
+    <div class="card bg-light mb-2" style="max-width: 30rem;">
+        <div class="card-header"><h3>Server Notes</h3></div>
         <div class="card-body">
             <h5 class="card-title">
             {% if siteinformation.Decommission == False and siteinformation.Serial_Removed == False %}
@@ -41,12 +40,10 @@
     </div>
 
 
-<div class="row">
+<!--<div class="row">-->
     <div class="col-4">
         <div class="card" style="width: 18rem;">
-            <div class="card-header">
-              Server Hardware
-            </div>
+            <div class="card-header"><h3>Server Hardware</h3></div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Server Type: {{ siteinformation.Type_Of_Server }}</li>
               <li class="list-group-item">Distro Flavor:  {{ siteinformation.Current_OS_Version }}</li>
@@ -62,9 +59,7 @@
     </div>
     <div class="col-4">
         <div class="card" style="width: 18rem;">
-            <div class="card-header">
-              Database Information
-            </div>
+            <div class="card-header"><h3>Database Information</h3></div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Postgres Version: {{ siteinformation.DB_Version }}</li>
               <li class="list-group-item">Exposure DB Size (GB): {{ siteinformation.ExposureDB_Size }} </li>
@@ -72,5 +67,5 @@
             </ul>
         </div>
     </div>
-</div>    
+</div>  
 {% endblock %}
