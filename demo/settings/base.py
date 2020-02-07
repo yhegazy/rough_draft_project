@@ -20,7 +20,7 @@ INSTALLED_APPS = [
     
     #Add APPS
     'demo',
-    'core',   
+    'core',
 ]
 
 MIDDLEWARE = [

@@ -9,6 +9,6 @@ class SiteInformationAdmin(admin.ModelAdmin):
             'fields': ('Site_Name', 'Serial_Number', 'Decommission', 'Serial_Removed', 'Current_Radimetrics_Version', 'Type_Of_Server', 'Notes')
         }),
         ('Server Type Details ', {
-            'fields': ('Site_Hostname', 'Site_IP_Address', 'Current_OS_Version', 'Disk_1', 'Disk_2', 'Disk_3', 'Current_CPU', 'Current_RAM', 'DB_Version', ('ExposureDB_Size', 'MirthDB_Size', )),
+            'fields': ('Site_Hostname', 'Site_IP_Address', 'Current_OS_Version', 'Disk_1', 'Disk_2', 'Disk_3', 'Current_CPU', 'Current_RAM', 'DB_Version', ('DB_Size1', 'DB_Size2', )),
         }),
     )
