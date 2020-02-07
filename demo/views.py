@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from .models import SiteInformation
-from django.contrib.auth.forms import UserCreationForm
+from .forms import RegistrationForm
 
 def home(request):
     return render(request, "index.html", {})
@@ -70,15 +70,15 @@ def status(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/hospitalsite')
     else:
-        form = UserCreationForm()
+        form = RegistrationForm()
 
-        args = {'form': form}
-        return render(request, 'registration/reg_form.html', args)
+        context = {'form': form}
+        return render(request, 'registration/reg_form.html', context)
 
 
 
