@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %} 
-{% if siteinformation.Current_Radimetrics_Version == '2.9.1b' or siteinformation.Current_Radimetrics_Version == '2.9b' %}
+{% if siteinformation.Current_Software_Version == '2.9.1b' or siteinformation.Current_Software_Version == '2.9b' %}
 <div class="card text-white bg-success mb-2" style="max-width: 30rem;">
-{% elif siteinformation.Current_Radimetrics_Version == '2.8b' or siteinformation.Current_Radimetrics_Version == '2.7a' or  siteinformation.Current_Radimetrics_Version == '2.7.1' or  siteinformation.Current_Radimetrics_Version == '2.6a' or siteinformation.Current_Radimetrics_Version == '2.5.1b' %}
+{% elif siteinformation.Current_Software_Version == '2.8b' or siteinformation.Current_Software_Version == '2.7a' or  siteinformation.Current_Software_Version == '2.7.1' or  siteinformation.Current_Software_Version == '2.6a' or siteinformation.Current_Software_Version == '2.5.1b' %}
 <div class="card text-white bg-warning mb-2" style="max-width: 30rem;">
 {% else %}
 <div class="card text-white bg-danger mb-2" style="max-width: 30rem;">
@@ -11,7 +11,7 @@
     <div class="card-header"><h3>{{ siteinformation.Site_Name }}</h3></div>
         <div class="card-body">
             <h5 class="card-title">{{ siteinformation.Serial_Number }}</h5>
-            <h5 class="card-text">{{ siteinformation.Current_Radimetrics_Version }}</h5>  <!--#Color coded to keeep with the theme--></h5>            
+            <h5 class="card-text">{{ siteinformation.Current_Software_Version }}</h5>  <!--#Color coded to keeep with the theme--></h5>            
             <h5>
                 {% if user.is_authenticated %}
                 <a href="{% url 'record_update' pk=siteinformation.id %}" class="btn btn-light">Edit</a>

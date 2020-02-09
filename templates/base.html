@@ -15,7 +15,7 @@
     
     <div class="ui secondary  menu">
         {% if user.is_authenticated %}
-            <p class="item"> Welcome: {{ user.get_username }}</p>
+            <p class="item"> Welcome: <a class="btn btn-link" href="{% url 'view_profile' %}"> {{ user.get_username }}</a></p>
             <a class="item" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
             {% if user.is_authenticated and request.user.is_superuser %}
             <a class="item" href="{% url 'register' %}">New Account</a>

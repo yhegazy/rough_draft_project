@@ -10,17 +10,17 @@ class RegistrationForm(UserCreationForm):
         }
     ))
 
-    password1 = forms.CharField(widget=forms.PasswordInput(
+    password1 = forms.CharField(label="Password:", widget=forms.PasswordInput(
         attrs={
             'class':'form-control',
             'placeholder': 'alphanumeric and @/./+/-/_ only'
         }
     ))
 
-    password2 = forms.CharField(widget=forms.PasswordInput(
+    password2 = forms.CharField(label="Confirm password:", widget=forms.PasswordInput(
         attrs={
             'class':'form-control',
-            'placeholder': 'Confirm password'
+            'placeholder': 'Verify password'
         }
     ))
     
@@ -31,14 +31,14 @@ class RegistrationForm(UserCreationForm):
         }
     ))
 
-    first_name = forms.CharField(widget=forms.TextInput(
+    first_name = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             'class':'form-control',
             'placeholder': 'Optional'
         }
     ))
 
-    last_name = forms.CharField(widget=forms.TextInput(
+    last_name = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             'class':'form-control',
             'placeholder': 'Optional'

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}  
+
+
+{% if user.is_authenticated%}
+    <div class="row">
+        <div class="col-12 pb-3">
+            <h1>{{ user }}'s Profile</h1>
+            <p>Username : {{ user }}</p>
+            <p>Email: {{ user.email }} </p>
+        </div>
+    </div>
+    {% if request.user.is_superuser %}
+    <div class="row">
+        <div class="col-12 pb-3">
+            <!--This section will show advanced/superuser only permissions/rights/memberships/group-->
+            <p>Test: {{ user.first_name }}</p>
+        </div>
+    </div>
+    {% endif %}
+{% else %}
+    <div class="row">
+        <div class="col-12 pb-3">
+            <p>Please login to access this page.</p>
+        </div>
+        <div class="col-12 pt-3">
+            <a class="btn btn-primary" href="{% url 'login'%}?next={{request.path}}">Login</a>
+        </div>
+    </div>
+{% endif %}
+
+
+
+
+{% endblock %}

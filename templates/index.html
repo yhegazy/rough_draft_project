@@ -3,10 +3,10 @@
 {% block content %}
 
 <h2>Server Status Page</h2>
-<p>This is a simple server status page. Click on either Site Name (Hospital Name) or it's Serial Tag (Asset#) for more details. Pagination is hard coded at 10 items per page.</p>
+<p>This is a simple server status page. Click on either Site Name or it's Serial Tag for more details. Pagination is hard coded at 10 items per page.</p>
 
 <h3>Admin Page</h3>
-<p>Only viewed when admin is logged in. It has it's merits.</p>
+<p>Only displayed when admin is logged in. It has it's merits.</p>
 {% if user.is_authenticated and request.user.is_superuser %}
   <p><a href="/admin">Admin Login</a></p>
   <p>username: <b>superuser</b></p>
@@ -34,14 +34,14 @@
         <td><a href="{% url 'serial_detail' pk=x.id %}">{{ x.Site_Name }}</a></td>
         <td><a href="{% url 'serial_detail' pk=x.id %}">{{ x.Serial_Number }}</a></td>
 
-        {% if x.Current_Radimetrics_Version == '2.9.1b' or x.Current_Radimetrics_Version == '2.9b' %}
+        {% if x.Current_Software_Version == '2.9.1b' or x.Current_Software_Version == '2.9b' %}
         <td style="background-color: #00FF00;">
-        {% elif x.Current_Radimetrics_Version == '2.8b' or x.Current_Radimetrics_Version == '2.7a' or  x.Current_Radimetrics_Version == '2.7.1' or  x.Current_Radimetrics_Version == '2.6a' or x.Current_Radimetrics_Version == '2.5.1b' %}
+        {% elif x.Current_Software_Version == '2.8b' or x.Current_Software_Version == '2.7a' or  x.Current_Software_Version == '2.7.1' or  x.Current_Software_Version == '2.6a' or x.Current_Software_Version == '2.5.1b' %}
         <td style="background-color: #FFFF00;">
         {% else %}
         <td style="background-color: #FF0000;">
         {% endif %}
-        {{ x.Current_Radimetrics_Version }}</td>
+        {{ x.Current_Software_Version }}</td>
         <td>{{ x.Type_Of_Server }}</td>
         <td>{{ x.Disk_1 }} || {{ x.Disk_2 }} || {{ x.Disk_3 }}</td>
         <td>{{ x.Current_CPU }} Cores || {{ x.Current_RAM }} GB</td>
@@ -77,7 +77,7 @@
 {% endif %}
 </div>
 {% if user.is_authenticated %}
-  <button class="btn btn-link"><a href="{% url 'record_create' %}">Create new entry</a></button>
+  <button class="btn btn-link mb-3"><a href="{% url 'record_create' %}">Create new entry</a></button>
   {% endif %}
   {% endblock %}
 

@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
-from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.views import generic
 from django.db.models import Count
 from .models import SiteInformation
 from .forms import RegistrationForm
@@ -13,32 +14,32 @@ def home(request):
 def status(request):
     #example = ModelName.objects.annotate(Count('authors'), Count('store'))
     server_count = SiteInformation.objects.all().count()
-    current_release_count = SiteInformation.objects.filter(Current_Radimetrics_Version__contains="2.9").count()
+    current_release_count = SiteInformation.objects.filter(Current_Software_Version__contains="2.9").count()
 
     
     #20200205::This next set of lines are hardcoded until I can find a better way of doing this. 
     
-    sum_of_outdated = (SiteInformation.objects.filter(Current_Radimetrics_Version__contains="2.8").count() + SiteInformation.objects.filter(Current_Radimetrics_Version__contains="2.7").count() + SiteInformation.objects.filter(Current_Radimetrics_Version__contains="2.6").count() + 
-    SiteInformation.objects.filter(Current_Radimetrics_Version__contains="2.5").count())
+    sum_of_outdated = (SiteInformation.objects.filter(Current_Software_Version__contains="2.8").count() + SiteInformation.objects.filter(Current_Software_Version__contains="2.7").count() + SiteInformation.objects.filter(Current_Software_Version__contains="2.6").count() + 
+    SiteInformation.objects.filter(Current_Software_Version__contains="2.5").count())
 
-    sum_of_deprecated = (SiteInformation.objects.filter(Current_Radimetrics_Version__contains="2.4").count() + SiteInformation.objects.filter(Current_Radimetrics_Version__contains="2.3").count())
+    sum_of_deprecated = (SiteInformation.objects.filter(Current_Software_Version__contains="2.4").count() + SiteInformation.objects.filter(Current_Software_Version__contains="2.3").count())
     
     #Version Numbers Individualized
     #Current
-    ver291b = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.9.1b").count()
-    ver29b = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.9b").count()
+    ver291b = SiteInformation.objects.filter(Current_Software_Version__exact="2.9.1b").count()
+    ver29b = SiteInformation.objects.filter(Current_Software_Version__exact="2.9b").count()
    
     #Outdated
-    ver28b = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.8b").count()
-    ver271 = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.7.1").count()
-    ver27a = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.7a").count()
-    ver26b = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.6b").count()
-    ver251b = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.5.1b").count()
-    ver25a = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.5a").count()
+    ver28b = SiteInformation.objects.filter(Current_Software_Version__exact="2.8b").count()
+    ver271 = SiteInformation.objects.filter(Current_Software_Version__exact="2.7.1").count()
+    ver27a = SiteInformation.objects.filter(Current_Software_Version__exact="2.7a").count()
+    ver26b = SiteInformation.objects.filter(Current_Software_Version__exact="2.6b").count()
+    ver251b = SiteInformation.objects.filter(Current_Software_Version__exact="2.5.1b").count()
+    ver25a = SiteInformation.objects.filter(Current_Software_Version__exact="2.5a").count()
 
     #Deprecated/Obsolete
-    ver24a = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.4a").count()
-    ver23a = SiteInformation.objects.filter(Current_Radimetrics_Version__exact="2.3a").count()
+    ver24a = SiteInformation.objects.filter(Current_Software_Version__exact="2.4a").count()
+    ver23a = SiteInformation.objects.filter(Current_Software_Version__exact="2.3a").count()
 
     #Table for OS Version
     rhel = SiteInformation.objects.filter(Current_OS_Version__exact='RedHat').count()
@@ -80,8 +81,10 @@ def register(request):
         context = {'form': form}
         return render(request, 'registration/reg_form.html', context)
 
-
-
+def view_profile(request):
+    context = {'user': request.user}
+    
+    return render(request, 'view_profile.html', context)
 class SiteInformationList(generic.ListView):
 	model = SiteInformation
 	context_object_name = 'siteinformation' 
@@ -105,4 +108,4 @@ class SiteInformationUpdate(LoginRequiredMixin, UpdateView):
 
     model = SiteInformation
     #Display only the fields that you would like to update
-    fields = ['Site_Name', 'Serial_Number', 'Decommission', 'Serial_Removed', 'Current_Radimetrics_Version', 'Type_Of_Server', 'Notes', 'Site_Hostname', 'Site_IP_Address', 'Current_OS_Version', 'Disk_1', 'Disk_2', 'Disk_3', 'Current_CPU', 'Current_RAM', 'DB_Version', 'DB_Size1', 'DB_Size2' ]
+    fields = ['Site_Name', 'Serial_Number', 'Decommission', 'Serial_Removed', 'Current_Software_Version', 'Type_Of_Server', 'Notes', 'Site_Hostname', 'Site_IP_Address', 'Current_OS_Version', 'Disk_1', 'Disk_2', 'Disk_3', 'Current_CPU', 'Current_RAM', 'DB_Version', 'DB_Size1', 'DB_Size2' ]

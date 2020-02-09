@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import RedirectView
-from .views import home, status, register
+from .views import home, status, register, view_profile
 from . import views
 from django.conf.urls.static import static
 
@@ -25,6 +25,7 @@ urlpatterns += [
     re_path(r'^hospitalsite/details/(?P<pk>\d+)$', views.SiteInformationDetail.as_view(), name='serial_detail'),
     re_path(r'status/$', status, name='status'),
     re_path(r'hospitalsite/register/$', views.register, name='register'),
+    re_path(r'hospitalsite/profile/$', views.view_profile, name='view_profile'),
     
     
 ]
