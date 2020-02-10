@@ -24,7 +24,7 @@
         {% else %}
             <p class="item">Welcome: <a class="item" href="{% url 'login'%}?next={{request.path}}">Login</a></p>
         {% endif %}
-        <a class="item" a href="/hospitalsite/">Home</a>
+        <a class="item" a href="{% url 'index' %}">Home</a>
         <a class="item" a href="{% url 'status' %}">Status</a>
         
         {% load flatpages %}

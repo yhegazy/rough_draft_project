@@ -6,12 +6,12 @@ from django.contrib.auth.forms import (
     UserChangeForm, 
     PasswordChangeForm
 )
+from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, redirect
-from django.views import generic
 from django.db.models import Count
+from django.views import generic
 from .models import SiteInformation
 from .forms import RegistrationForm,  EditProfileForm
-from django.contrib.auth import update_session_auth_hash
 
 def home(request):
     return render(request, "index.html", {})
@@ -23,7 +23,10 @@ def status(request):
     current_release_count = SiteInformation.objects.filter(Current_Software_Version__contains="2.9").count()
 
     
-    #20200205::This next set of lines are hardcoded until I can find a better way of doing this. 
+    """
+    TODO: 20200205 
+    This next set of lines are hardcoded until I can find a better way of doing this.
+    """
     
     sum_of_outdated = (SiteInformation.objects.filter(Current_Software_Version__contains="2.8").count() + SiteInformation.objects.filter(Current_Software_Version__contains="2.7").count() + SiteInformation.objects.filter(Current_Software_Version__contains="2.6").count() + 
     SiteInformation.objects.filter(Current_Software_Version__contains="2.5").count())
@@ -80,7 +83,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/hospitalsite')
+            return redirect('/site')
     else:
         form = RegistrationForm()
 
@@ -98,7 +101,7 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect('/hospitalsite/profile')
+            return redirect('/site/profile')
         
     else:
         form = EditProfileForm(instance=request.user)
@@ -112,10 +115,10 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('/hospitalsite/profile')
+            return redirect('/site/profile')
         
         else:
-            return redirect('/hospitalsite/profile/password')
+            return redirect('/site/profile/password')
 
     else:
         form = PasswordChangeForm(user=request.user)

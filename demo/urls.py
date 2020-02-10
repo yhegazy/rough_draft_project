@@ -3,13 +3,12 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import RedirectView
 from . import views
-from .views import home, status, register, view_profile, edit_profile, change_password
+from .views import status, register, view_profile, edit_profile, change_password
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('hospital/', home, name='home'),
-    path('hospital/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls, name='admin'),
+    path('status/', status, name='status'),
 ]
 
 """
@@ -18,16 +17,15 @@ urlpatterns = [
     
 urlpatterns += [
     re_path('^$', views.SiteInformationList.as_view()),
-    re_path(r'^hospitalsite/$', views.SiteInformationList.as_view(), name='index'),
-    re_path(r'^hospitalsite/create/$', views.SiteInformationCreate.as_view(), name='record_create'), 
-    re_path(r'^hospitalsite/(?P<pk>\d+)/update/$', views.SiteInformationUpdate.as_view(), name='record_update'),
-    re_path(r'^hospitalsite/(?P<pk>\d+)$',  views.SiteInformationList.as_view(), name='index'),
-    re_path(r'^hospitalsite/details/(?P<pk>\d+)$', views.SiteInformationDetail.as_view(), name='serial_detail'),
-    re_path(r'status/$', status, name='status'),
-    re_path(r'hospitalsite/register/$', views.register, name='register'),
-    re_path(r'hospitalsite/profile/$', views.view_profile, name='view_profile'),
-    re_path(r'hospitalsite/profile/edit/$', views.edit_profile, name='edit_profile'),
-    re_path(r'hospitalsite/profile/password/$', views.change_password, name='change_password'),
+    re_path(r'^site/$', views.SiteInformationList.as_view(), name='index'),
+    re_path(r'^site/create/$', views.SiteInformationCreate.as_view(), name='record_create'), 
+    re_path(r'^site/(?P<pk>\d+)/update/$', views.SiteInformationUpdate.as_view(), name='record_update'),
+    re_path(r'^site/(?P<pk>\d+)$',  views.SiteInformationList.as_view(), name='index'),
+    re_path(r'^site/details/(?P<pk>\d+)$', views.SiteInformationDetail.as_view(), name='serial_detail'),
+    re_path(r'site/register/$', views.register, name='register'),
+    re_path(r'site/profile/$', views.view_profile, name='view_profile'),
+    re_path(r'site/profile/edit/$', views.edit_profile, name='edit_profile'),
+    re_path(r'site/profile/password/$', views.change_password, name='change_password'),
     
     
 ]

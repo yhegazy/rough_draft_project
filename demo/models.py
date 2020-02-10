@@ -22,7 +22,7 @@ class SiteInformation(models.Model):
         ('DB', 'DB'),
     )
 
-    Site_Name = models.CharField(max_length=100, blank=True, help_text="Hospital Name")
+    Site_Name = models.CharField(max_length=100, blank=True, help_text="Site Name")
     Serial_Number = models.CharField(max_length=50, blank=False, default="", help_text="ie: 50001201161")
     Current_OS_Version = models.CharField(max_length=10, choices=CURRENT_OS_VERSION, blank=True, default='-', help_text='Current OS Version')
     Current_Software_Version = models.CharField(max_length=10, blank=False, default='2.9.1b', help_text='ie: 2.9.1b ')
@@ -48,7 +48,7 @@ class SiteInformation(models.Model):
 
 
     def __str__(self):
-        return self.Hospital_Name
+        return self.Site_Name
     
     def get_absolute_url(self):
         return reverse('index', args=[str(self.id)])

@@ -35,14 +35,12 @@ class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             'class':'form-control',
-            'placeholder': 'Optional'
         }
     ))
 
     last_name = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             'class':'form-control',
-            'placeholder': 'Optional'
         }
     ))
     
