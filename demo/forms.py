@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
 
 class RegistrationForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(
@@ -66,3 +67,41 @@ class RegistrationForm(UserCreationForm):
             user.save()
         
         return user
+
+class EditProfileForm(UserChangeForm):
+
+    """
+    TODO: 20200210 - Happy Birthday Ahmed!
+    Write a function that brings together all widgets of the same functionality to replace the repitition.
+    """
+
+    email = forms.EmailField(required=True, widget=forms.EmailInput(
+        attrs={
+            'class':'form-control',
+        }
+    ))
+
+    first_name = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+        }
+    ))
+
+    last_name = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class':'form-control',
+
+        }
+    ))
+    
+    class Meta:
+        model = User
+
+        fields = (
+            'email',
+            'first_name',
+            'last_name',
+        )
+
+        exclude = ('password1', )
+        

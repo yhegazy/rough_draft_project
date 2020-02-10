@@ -2,8 +2,8 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import RedirectView
-from .views import home, status, register, view_profile
 from . import views
+from .views import home, status, register, view_profile, edit_profile, change_password
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -26,6 +26,8 @@ urlpatterns += [
     re_path(r'status/$', status, name='status'),
     re_path(r'hospitalsite/register/$', views.register, name='register'),
     re_path(r'hospitalsite/profile/$', views.view_profile, name='view_profile'),
+    re_path(r'hospitalsite/profile/edit/$', views.edit_profile, name='edit_profile'),
+    re_path(r'hospitalsite/profile/password/$', views.change_password, name='change_password'),
     
     
 ]
