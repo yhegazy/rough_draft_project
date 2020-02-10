@@ -1,15 +1,21 @@
-<h1>The Wiki</h1>
+<h1>Rough Draft Project - The Wiki</h1>
 
 بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
 
 
-<p>This idea stemmed from <a href="https://github.com/justdjango">JustDjango's</a> basic boilerplate. I plan to build off of it and hopefully create something new or improved.</p>
+<p>Credit goes where credit is due, this stemmed from <a href="https://github.com/justdjango">JustDjango's</a> basic boilerplate. </p>
 
-<p>This is broken down into 2 sections - Core & Demo. Core will contain scripts that pertain to development, while Demo will contain the web app & it's information.</p>
+<p>The original purpose of this project was to provide a staus, user-changeable, display of current software versions of a particular product. The eventual goal is to be an out of the box, easy to install, application. The following have been added:</p>
+<ul>
+  <li> Color coded software version!</li>
+  <li> User registration</li>
+  <li> Demo: HowTo Flatpage</li>
+  <li> Status page </li>
+  <li> and more...</li>
+</ul>     
 
 
-#Notes::
-
+<h3>Side notes and blues:</h3>
 ERROR: django.contrib.sites.models.Site.DoesNotExist: Site matching query does not 
 exist.
 
