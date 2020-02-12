@@ -66,6 +66,7 @@ class RegistrationForm(UserCreationForm):
         
         return user
 
+#I may take this out completely 
 class EditProfileForm(UserChangeForm):
 
     """

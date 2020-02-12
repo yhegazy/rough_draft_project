@@ -41,3 +41,10 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS' : False,
     'SHOW_TOOLBAR_CALLBACK' : show_toolbar
 }
+
+#MAIL SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 2
+#EMAIL_HOST = 'localhost'
+#EMAIL_PORT = 1025
+

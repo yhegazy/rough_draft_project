@@ -101,7 +101,7 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect('/site/profile')
+            return redirect('/profile')
         
     else:
         form = EditProfileForm(instance=request.user)
@@ -115,16 +115,19 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('/site/profile')
+            return redirect('/profile')
         
         else:
-            return redirect('/site/profile/password')
+            return redirect('/profile/password_change')
 
     else:
         form = PasswordChangeForm(user=request.user)
 
         context = {'form': form}
-        return render(request, 'change_password.html', context)
+        return render(request, 'registration/password_change_form.html', context)
+
+def login(request):
+    pass
 
 class SiteInformationList(generic.ListView):
 	model = SiteInformation
