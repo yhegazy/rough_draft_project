@@ -19,9 +19,12 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     
     #Add APPS
+    'crispy_forms',
     'demo',
     'core',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

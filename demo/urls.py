@@ -33,7 +33,7 @@ urlpatterns += [
     re_path(r'^site/details/(?P<pk>\d+)$', views.SiteInformationDetail.as_view(), name='serial_detail'),
     
     #Profile URLs
-    re_path(r'profile/edit/$', views.edit_profile, name='edit_profile'),
+  #  re_path(r'profile/edit/$', views.edit_profile, name='edit_profile'),
     re_path(r'profile/password_change/', views.change_password, name='password_change'),
 
     #Account Password Reset

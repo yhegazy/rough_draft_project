@@ -9,9 +9,6 @@
             <p>Username : {{ user }}</p>
             <p>Email: {{ user.email }} </p>
         </div>
-        {% if request.user.is_superuser %}
-         <button  class="btn btn-link mb-3"><a href="{% url 'edit_profile' %}">Edit Profile</a></button>
-         {% endif %}
         <button  class="btn btn-link mb-3"><a href="{% url 'password_change' %}">Change Password</a></button >
     </div>
     {% if request.user.is_superuser %}

@@ -1,50 +1,20 @@
 {% extends "base.html" %}
-
 {% block content %}
+{% load crispy_forms_tags %}
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            {% if form.errors %}
-                <p style="color:red">Incorrect Username and/or Password. Try again.</p>
-            {% endif %}
-        
-            {% if next %}
-                {% if user.is_authenticated %}
-                <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
-                {% else %}
-                <p>Please login to see this page.</p><br>
-                {% endif %}
-            {% endif %}
-        </div>
+<div class="row justify-content-center">
+    <div class="col-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>New User Account</h2>
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-primary mb-4">Login</button>
+                    <button  class="btn btn-link mb-4"><a href="{% url 'reset_password' %}">Reset Your Password</a></button >
+                </form>
+            </div>
+        </div>      
     </div>
 </div>
-
-<form method="post" action="{% url 'login' %}" >
-{% csrf_token %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </div>
-        </div>
-    
-        <div class="row">
-            <div class="col">
-                <button class="btn btn-primary mb-3">Login</button>
-                <button  class="btn btn-link mb-3"><a href="{% url 'reset_password' %}">Reset Your Password</a></button >
-            </div>
-        </div>
-    </div>
-</form>
-
-{# Assumes you setup the password_reset view in your URLconf #}
-<!--<p><a href="{% url 'password_reset' %}">Forgot password?</a></p>-->
 {% endblock %}

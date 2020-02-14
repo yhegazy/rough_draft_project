@@ -1,5 +1,7 @@
+from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import (
     UserCreationForm,
@@ -9,7 +11,6 @@ from django.contrib.auth.forms import (
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, redirect
 from django.db.models import Count
-from django.views import generic
 from .models import SiteInformation
 from .forms import RegistrationForm,  EditProfileForm
 
@@ -95,6 +96,7 @@ def view_profile(request):
     
     return render(request, 'view_profile.html', context)
 
+@login_required
 def edit_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
