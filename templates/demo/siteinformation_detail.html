@@ -1,71 +1,79 @@
 {% extends "base.html" %}
 
 {% block content %} 
-{% if siteinformation.Current_Software_Version == '2.9.1b' or siteinformation.Current_Software_Version == '2.9b' %}
-<div class="card text-white bg-success mb-2" style="max-width: 30rem;">
-{% elif siteinformation.Current_Software_Version == '2.8b' or siteinformation.Current_Software_Version == '2.7a' or  siteinformation.Current_Software_Version == '2.7.1' or  siteinformation.Current_Software_Version == '2.6a' or siteinformation.Current_Software_Version == '2.5.1b' %}
-<div class="card text-white bg-warning mb-2" style="max-width: 30rem;">
-{% else %}
-<div class="card text-white bg-danger mb-2" style="max-width: 30rem;">
-{% endif %}
-    <div class="card-header"><h3>{{ siteinformation.Site_Name }}</h3></div>
-        <div class="card-body">
-            <h5 class="card-title">{{ siteinformation.Serial_Number }}</h5>
-            <h5 class="card-text">{{ siteinformation.Current_Software_Version }}</h5>  <!--#Color coded to keeep with the theme--></h5>            
-            <h5>
-                {% if user.is_authenticated %}
-                <a href="{% url 'record_update' pk=siteinformation.id %}" class="btn btn-light">Edit</a>
-                {% endif %}
-            </h5>
-        </div>
-    </div>
 
 <div class="row">
-    <div class="card bg-light mb-2" style="max-width: 30rem;">
-        <div class="card-header"><h3>Server Notes</h3></div>
-        <div class="card-body">
-            <h5 class="card-title">
-            {% if siteinformation.Decommission == False and siteinformation.Serial_Removed == False %}
-                Server Active
-            {% elif siteinformation.Decommission == False and siteinformation.Serial_Removed == True  %}
-                Server not found in Axeda
-            {% elif siteinformation.Decommission == True and siteinformation.Serial_Removed == False  %}
-                Server decommissioned, not removed from Axeda.
-            {% elif siteinformation.Decommission == True and siteinformation.Serial_Removed == True  %}
-                Server decommissioned and removed from Axeda.
-            {% endif %} 
-            </h5>
-            <p class="card-text"> {{ siteinformation.Notes }}</p>
+    <div class="col-4 mb-4">
+        {% if siteinformation.Current_Software_Version == '2.9.1b' or siteinformation.Current_Software_Version == '2.9b' %}
+        <div class="card text-white bg-success mb-2" style="max-width: 30rem;">
+        {% elif siteinformation.Current_Software_Version == '2.8b' or siteinformation.Current_Software_Version == '2.7a' or  siteinformation.Current_Software_Version == '2.7.1' or  siteinformation.Current_Software_Version == '2.6a' or siteinformation.Current_Software_Version == '2.5.1b' %}
+        <div class="card text-white bg-warning mb-2" style="max-width: 30rem;">
+        {% else %}
+        <div class="card text-white bg-danger mb-2" style="max-width: 30rem;">
+        {% endif %}
+            <div class="card-header"><h2>{{ siteinformation.Site_Name }}</h2></div>
+            <div class="card-body">
+                <h3 class="card-title">{{ siteinformation.Serial_Number }}</h3>
+                <h5 class="card-text">{{ siteinformation.Current_Software_Version }}</h5>  <!--#Color coded to keeep with the theme--></h5>            
+                <h5>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'record_update' pk=siteinformation.id %}" class="btn btn-light">Edit</a>
+                    {% endif %}
+                </h5>
+            </div>
         </div>
     </div>
+    <div class="col-4 mb-4">
+        <div class="card">
+            <div class="card-header"><h2>Server Notes</h2></div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    {% if siteinformation.Decommission == False and siteinformation.Serial_Removed == False %}
+                        Server Active
+                    {% elif siteinformation.Decommission == False and siteinformation.Serial_Removed == True  %}
+                        Server not found in [monitoring system]
+                    {% elif siteinformation.Decommission == True and siteinformation.Serial_Removed == False  %}
+                        Server decommissioned, not removed from [monitoring system].
+                    {% elif siteinformation.Decommission == True and siteinformation.Serial_Removed == True  %}
+                        Server decommissioned and removed from [monitoring system].
+                    {% endif %} 
+                </h5>
+                <p class="card-text"> {{ siteinformation.Notes }}</p>
+            </div>
+        </div>      
+    </div>
+</div>
 
-
-<!--<div class="row">-->
-    <div class="col-4">
-        <div class="card" style="width: 18rem;">
-            <div class="card-header"><h3>Server Hardware</h3></div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Server Type: {{ siteinformation.Type_Of_Server }}</li>
-              <li class="list-group-item">Distro Flavor:  {{ siteinformation.Current_OS_Version }}</li>
-              <li class="list-group-item">Hostname: {{ siteinformation.Site_Hostname }}</li>
-              <li class="list-group-item">IP Address: {{ siteinformation.Site_IP_Address }} </li>
-              <li class="list-group-item">Disk 1: {{ siteinformation.Disk_1 }}  </li>
-              <li class="list-group-item">Disk 2: {{ siteinformation.Disk_2 }}  </li>
-              <li class="list-group-item">Disk 3: {{ siteinformation.Disk_3 }}  </li>
-              <li class="list-group-item">CPU: {{ siteinformation.Current_CPU }} Cores  </li>
-              <li class="list-group-item">RAM: {{ siteinformation.Current_RAM }} GB  </li>
-            </ul>
-        </div>
+<div class="row">
+    <div class="col-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h2>Server Hardawre</h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Server Type: {{ siteinformation.Type_Of_Server }}</li>
+                    <li class="list-group-item">Distro Flavor:  {{ siteinformation.Current_OS_Version }}</li>
+                    <li class="list-group-item">Hostname: {{ siteinformation.Site_Hostname }}</li>
+                    <li class="list-group-item">IP Address: {{ siteinformation.Site_IP_Address }} </li>
+                    <li class="list-group-item">Disk 1: {{ siteinformation.Disk_1 }}  </li>
+                    <li class="list-group-item">Disk 2: {{ siteinformation.Disk_2 }}  </li>
+                    <li class="list-group-item">Disk 3: {{ siteinformation.Disk_3 }}  </li>
+                    <li class="list-group-item">CPU: {{ siteinformation.Current_CPU }} Cores  </li>
+                    <li class="list-group-item">RAM: {{ siteinformation.Current_RAM }} GB  </li>
+                  </ul>
+            </div>
+        </div>     
     </div>
-    <div class="col-4">
-        <div class="card" style="width: 18rem;">
-            <div class="card-header"><h3>Database Information</h3></div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Postgres Version: {{ siteinformation.DB_Version }}</li>
-              <li class="list-group-item">DB Size 1 (GB): {{ siteinformation.ExposureDB_Size }} </li>
-              <li class="list-group-item">DB Size 2 (GB): {{siteinformation.MirthDB_Size }}</li>
-            </ul>
-        </div>
+    <div class="col-4 mb-4 ">
+        <div class="card">
+            <div class="card-body">
+                <h2>Database Information</h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> Postgres Version: {{ siteinformation.DB_Version }}</li>
+                    <li class="list-group-item">DB Size (GB): {{ siteinformation.DB_Size1 }} </li>
+                  </ul>
+            </div>
+        </div>      
     </div>
-</div>  
+</div>
+ 
 {% endblock %}

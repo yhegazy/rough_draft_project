@@ -13,13 +13,10 @@ class SiteInformation(models.Model):
 
     TYPE_OF_SERVER = (
         ('-', 'Pick One'),
-        ('PROD', 'PROD'),
-        ('TEST', 'TEST'),
-        ('CONTRAST', 'CONTRAST ONLY'),
-        ('PREPROCESSOR', 'PRE-PROCESSOR'),
-        ('ENTERPRISE', 'ENTERPRISE'),
-        ('APP', 'APP'),
-        ('DB', 'DB'),
+        ('Production', 'Production'),
+        ('Test', 'Test'),
+        ('Application', 'Application'),
+        ('Database', 'Database'),
     )
 
     Site_Name = models.CharField(max_length=100, blank=True, help_text="Site Name")
@@ -34,7 +31,7 @@ class SiteInformation(models.Model):
     Current_RAM = models.CharField(max_length=5, blank=False, default="", help_text="ie: 16")
     DB_Version = models.CharField(max_length=10, blank=True, default="", help_text="ie: 8.4")
     DB_Size1 = models.CharField(max_length=50, blank=True, default="50", help_text="ie: 100GB")
-    DB_Size2 = models.CharField(max_length=50, blank=True, default="", help_text="ie: 5")
+    DB_Size2 = models.CharField(max_length=50, blank=True, default="25", help_text="ie: 5")
     Site_Hostname = models.CharField(max_length=100, blank=True, default="", help_text="ie: hostname.domain.local")
     Site_IP_Address = models.CharField(max_length=100, blank=True, default="", help_text="ie: 127.0.0.1")
     Notes = models.TextField(max_length=1250, blank=True, default="")

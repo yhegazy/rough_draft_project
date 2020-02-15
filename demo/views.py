@@ -154,4 +154,4 @@ class SiteInformationUpdate(LoginRequiredMixin, UpdateView):
 
     model = SiteInformation
     #Display only the fields that you would like to update
-    fields = ['Site_Name', 'Serial_Number', 'Decommission', 'Serial_Removed', 'Current_Software_Version', 'Type_Of_Server', 'Notes', 'Site_Hostname', 'Site_IP_Address', 'Current_OS_Version', 'Disk_1', 'Disk_2', 'Disk_3', 'Current_CPU', 'Current_RAM', 'DB_Version', 'DB_Size1', 'DB_Size2' ]
+    fields = ['Site_Name', 'Serial_Number', 'Decommission', 'Serial_Removed', 'Type_Of_Server', 'Current_Software_Version', 'Current_OS_Version', 'Site_Hostname', 'Site_IP_Address', 'Current_CPU', 'Current_RAM', 'Disk_1', 'Disk_2', 'Disk_3', 'DB_Version', 'DB_Size1', 'Notes', ]
